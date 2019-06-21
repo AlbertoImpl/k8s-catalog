@@ -1,0 +1,35 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "Greenwich.SR1")
+}
+
+dependencies {
+    implementation "org.springframework.cloud:spring-cloud-starter-app-broker:1.0.2.AR-BUILD-SNAPSHOT"
+//    implementation 'io.kubernetes:client-java:5.0.0'
+//    implementation "io.fabric8:kubernetes-client:4.2.2"
+
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
